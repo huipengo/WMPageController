@@ -21,6 +21,7 @@
         _titles = @[@"WMMenuViewStyleDefault",
                     @"WMMenuViewStyleLine",
                     @"WMMenuViewStyleFlood",
+                    @"WBMenuViewStyleBorder",
                     @"WMMenuViewStyleFloodHollow",
                     @"WMMenuViewShowOnNav",
                     @"WMMenuViewStyleSegmented",
@@ -37,6 +38,7 @@
         _stylesMap = @{@"WMMenuViewStyleDefault": @(WMMenuViewStyleDefault),
                        @"WMMenuViewStyleLine": @(WMMenuViewStyleLine),
                        @"WMMenuViewStyleFlood": @(WMMenuViewStyleFlood),
+                       @"WBMenuViewStyleBorder": @(WBMenuViewStyleBorder),
                        @"WMMenuViewStyleFloodHollow": @(WMMenuViewStyleFloodHollow),
                        @"WMMenuViewShowOnNav": @(WMMenuViewStyleFlood),
                        @"WMMenuViewStyleSegmented": @(WMMenuViewStyleSegmented),
@@ -106,7 +108,7 @@
         case WMMenuViewStyleFlood: {
             vc.titleColorSelected = [UIColor whiteColor];
             vc.titleColorNormal = [UIColor colorWithRed:168.0/255.0 green:20.0/255.0 blue:4/255.0 alpha:1];
-            vc.progressColor = [UIColor colorWithRed:168.0/255.0 green:20.0/255.0 blue:4/255.0 alpha:1];
+            vc.progressColor = [UIColor colorWithRed:51.0f/255.0f green:82.0f/255.0f blue:254.0f/255.0f alpha:1];
             vc.showOnNavigationBar = YES;
             vc.menuViewLayoutMode = WMMenuViewLayoutModeCenter;
             vc.titleSizeSelected = 15;
@@ -118,7 +120,13 @@
             vc.titleSizeSelected = 15;
         }
             break;
+        case WBMenuViewStyleBorder:
         case WMMenuViewStyleDefault: {
+            vc.titleColorSelected = [UIColor whiteColor];
+            vc.titleColorNormal = [UIColor colorWithRed:168.0/255.0 green:20.0/255.0 blue:4/255.0 alpha:1];
+            vc.progressColor = [UIColor colorWithRed:51.0f/255.0f green:82.0f/255.0f blue:254.0f/255.0f alpha:1];
+            vc.showOnNavigationBar = YES;
+            vc.menuViewLayoutMode = WMMenuViewLayoutModeCenter;
             vc.titleSizeSelected = 16;
         }
             break;

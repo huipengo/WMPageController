@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, WMMenuViewStyle) {
     WMMenuViewStyleFlood,        // 涌入效果 (填充)
     WMMenuViewStyleFloodHollow,  // 涌入效果 (空心的)
     WMMenuViewStyleSegmented,    // 涌入带边框,即网易新闻选项卡
+    WBMenuViewStyleBorder = 6,   // 带边框背景
 };
 
 // 原先基础上添加了几个方便布局的枚举，更多布局格式可以通过设置 `itemsMargins` 属性来自定义

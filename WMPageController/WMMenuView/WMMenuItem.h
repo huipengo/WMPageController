@@ -31,7 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, weak) id<WMMenuItemDelegate> delegate;
 @property (nonatomic, assign, readonly) BOOL selected;
 
+@property (nonatomic, assign) NSInteger wb_style;
+
 - (void)setSelected:(BOOL)selected withAnimation:(BOOL)animation;
+
+- (void)wb_refreshMenuItem;
 
 @end
 NS_ASSUME_NONNULL_END

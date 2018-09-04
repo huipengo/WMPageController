@@ -374,7 +374,8 @@
 
 - (CGRect)calculateProgressViewFrame {
     switch (self.style) {
-        case WMMenuViewStyleDefault: {
+        case WMMenuViewStyleDefault:
+        case WBMenuViewStyleBorder:{
             return CGRectZero;
         }
         case WMMenuViewStyleLine:
@@ -393,6 +394,11 @@
     WMMenuItem *item = (WMMenuItem *)[self viewWithTag:(WMMENUITEM_TAG_OFFSET + index)];
     CGRect frame = [self.frames[index] CGRectValue];
     item.frame = frame;
+    
+    if (self.style == WBMenuViewStyleBorder) {
+        [item wb_refreshMenuItem];
+    }
+    
     if ([self.delegate respondsToSelector:@selector(menuView:didLayoutItemFrame:atIndex:)]) {
         [self.delegate menuView:self didLayoutItemFrame:item atIndex:index];
     }
@@ -485,6 +491,7 @@
         item.textAlignment = NSTextAlignmentCenter;
         item.userInteractionEnabled = YES;
         item.backgroundColor = [UIColor clearColor];
+        item.wb_style      = self.style;
         item.normalSize    = [self sizeForState:WMMenuItemStateNormal atIndex:i];
         item.selectedSize  = [self sizeForState:WMMenuItemStateSelected atIndex:i];
         item.normalColor   = [self colorForState:WMMenuItemStateNormal atIndex:i];
@@ -600,7 +607,7 @@
     [menuItem setSelected:YES withAnimation:YES];
     self.selItem = menuItem;
     
-    NSTimeInterval delay = self.style == WMMenuViewStyleDefault ? 0 : 0.3f;
+    NSTimeInterval delay = (self.style == WMMenuViewStyleDefault || self.style == WBMenuViewStyleBorder) ? 0 : 0.3f;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 让选中的item位于中间
         [self refreshContenOffset];

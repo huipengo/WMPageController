@@ -45,6 +45,12 @@
 
 - (void)setSelected:(BOOL)selected withAnimation:(BOOL)animation {
     _selected = selected;
+    
+    [self wb_refreshMenuItemFont];
+    if (self.wb_style == 6) {
+        [self wb_refreshMenuItem];
+    }
+    
     if (!animation) {
         self.rate = selected ? 1.0 : 0.0;
         return;
@@ -103,6 +109,32 @@
     if ([self.delegate respondsToSelector:@selector(didPressedMenuItem:)]) {
         [self.delegate didPressedMenuItem:self];
     }
+}
+
+- (void)wb_refreshMenuItemFont {
+    [UIView animateWithDuration:0.2f animations:^{
+        if (self.selected) {
+            self.font = [UIFont boldSystemFontOfSize:self.selectedSize];
+        }
+        else {
+            self.font = [UIFont systemFontOfSize:self.normalSize];
+        }
+    }];
+}
+
+- (void)wb_refreshMenuItem {
+    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        if (self.selected) {
+            self.backgroundColor = [UIColor colorWithRed:51.0f/255.0f green:82.0f/255.0f blue:254.0f/255.0f alpha:1];
+        }
+        else {
+            self.backgroundColor = [UIColor colorWithRed:239.0f/255.0f green:239.0f/255.0f blue:244.0f/255.0f alpha:1.0f];
+        }
+    } completion:^(BOOL finished) {
+        
+    }];
+    self.layer.cornerRadius = self.frame.size.height / 2.0f;
+    self.layer.masksToBounds = YES;
 }
 
 @end

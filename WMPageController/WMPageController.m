@@ -439,6 +439,9 @@ static NSInteger const kWMControllerCountUndefined = -1;
     if (@available(iOS 11.0, *)) {
         scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
+    else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     [self.view addSubview:scrollView];
     self.scrollView = scrollView;
     
@@ -690,7 +693,7 @@ static NSInteger const kWMControllerCountUndefined = -1;
     [self wm_initializedControllerWithIndexIfNeeded:self.selectIndex];
     self.currentViewController = self.displayVC[@(self.selectIndex)];
     [self wm_addMenuView];
-    [self didEnterController:self.currentViewController atIndex:self.selectIndex];
+//    [self didEnterController:self.currentViewController atIndex:self.selectIndex];
 }
 
 - (void)viewDidLayoutSubviews {

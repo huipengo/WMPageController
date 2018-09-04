@@ -31,6 +31,7 @@
     if (self.menuViewStyle == WMMenuViewStyleTriangle) {
         [self.view addSubview:self.redView];
     }
+    self.itemMargin = 10.0f;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -71,7 +72,7 @@
 
 - (CGFloat)menuView:(WMMenuView *)menu widthForItemAtIndex:(NSInteger)index {
     CGFloat width = [super menuView:menu widthForItemAtIndex:index];
-    return width + 20;
+    return width + 18 * 2;
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView {
